@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShopEase - Ecommerce Website</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #f8fafc;
+      color: #1e293b;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 8%;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 30px;
+      font-weight: bold;
+      color: #2563eb;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #334155;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #2563eb;
+    }
+
+    .nav-icons {
+      display: flex;
+      gap: 20px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 80px 8%;
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      color: white;
+      min-height: 90vh;
+    }
+
+    .hero-text {
+      max-width: 550px;
+    }
+
+    .hero-text h1 {
+      font-size: 60px;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .hero-text p {
+      font-size: 18px;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+
+    .hero-text button {
+      padding: 15px 30px;
+      border: none;
+      background: white;
+      color: #2563eb;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .hero-text button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255,255,255,0.3);
+    }
+
+    .hero img {
+      width: 450px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 40px;
+      margin: 70px 0 40px;
+      color: #0f172a;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+      padding: 0 8% 80px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      transition: 0.3s ease;
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 20px;
+    }
+
+    .product-info h3 {
+      margin-bottom: 10px;
+      font-size: 22px;
+    }
+
+    .price {
+      color: #2563eb;
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .product-info button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      color: white;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .product-info button:hover {
+      transform: scale(1.03);
+    }
+
+    .cart-section {
+      background: white;
+      margin: 0 8% 80px;
+      padding: 35px;
+      border-radius: 25px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+
+    .cart-section h2 {
+      margin-bottom: 20px;
+      font-size: 32px;
+    }
+
+    .cart-items {
+      margin-bottom: 20px;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 15px 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .total {
+      font-size: 24px;
+      font-weight: bold;
+      color: #2563eb;
+    }
+
+    footer {
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 25px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 50px;
+      }
+
+      .hero img {
+        width: 320px;
+        margin-top: 40px;
+      }
+
+      .hero-text h1 {
+        font-size: 42px;
+      }
+
+      .navbar {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero-text h1 {
+        font-size: 34px;
+      }
+
+      .section-title {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">ShopEase</div>
+
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#">Categories</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+
+    <div class="nav-icons">
+      🛒 <span id="cart-count">0</span>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Discover Amazing Products Online</h1>
+      <p>
+        Shop the latest fashion, gadgets, accessories and more with amazing offers and premium quality.
+      </p>
+      <button>Shop Now</button>
+    </div>
+
+    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1000" alt="Product Image">
+  </section>
+
+  <h2 class="section-title" id="products">Featured Products</h2>
+
+  <section class="products">
+
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1000" alt="Shoes">
+
+      <div class="product-info">
+        <h3>Running Shoes</h3>
+        <p class="price">₹2,499</p>
+        <button onclick="addToCart('Running Shoes', 2499)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1000" alt="Phone">
+
+      <div class="product-info">
+        <h3>Smartphone</h3>
+        <p class="price">₹24,999</p>
+        <button onclick="addToCart('Smartphone', 24999)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=1000" alt="Tshirt">
+
+      <div class="product-info">
+        <h3>Casual T-Shirt</h3>
+        <p class="price">₹799</p>
+        <button onclick="addToCart('Casual T-Shirt', 799)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1000" alt="Headphones">
+
+      <div class="product-info">
+        <h3>Wireless Headphones</h3>
+        <p class="price">₹3,999</p>
+        <button onclick="addToCart('Headphones', 3999)">Add to Cart</button>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="cart-section">
+    <h2>Shopping Cart</h2>
+
+    <div class="cart-items" id="cart-items">
+      <p>No items added yet.</p>
+    </div>
+
+    <div class="total">
+      Total: ₹<span id="cart-total">0</span>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 ShopEase Ecommerce Website | HTML CSS JavaScript Project</p>
+  </footer>
+
+  <script>
+    let cartCount = 0;
+    let total = 0;
+
+    function addToCart(product, price) {
+      cartCount++;
+      total += price;
+
+      document.getElementById('cart-count').innerText = cartCount;
+      document.getElementById('cart-total').innerText = total;
+
+      const cartItems = document.getElementById('cart-items');
+
+      if (cartCount === 1) {
+        cartItems.innerHTML = '';
+      }
+
+      const item = document.createElement('div');
+      item.classList.add('cart-item');
+
+      item.innerHTML = `
+        <span>${product}</span>
+        <span>₹${price}</span>
+      `;
+
+      cartItems.appendChild(item);
+    }
+  </script>
+
+</body>
+</html>
